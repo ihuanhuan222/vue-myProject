@@ -4,7 +4,7 @@
     <header class="header_box">
       <div class="header_search">
         <img class="logo" src="./images/indexLogo-a90bdaae6b.png" alt="logo">
-        <div class="search">
+        <div class="search" @click="$router.push('/search')">
           <img src="./images/search2-553dba3aff.png" alt="">
           <span>搜索商品，共21726件好物</span>
         </div>
@@ -25,13 +25,54 @@
             <li class="leftItem">
               <a href="javascript:;">美食酒水</a>
             </li>
+            <li class="leftItem">
+              <a href="javascript:;">居家生活</a>
+            </li>
+            <li class="leftItem">
+              <a href="javascript:;">服饰鞋包</a>
+            </li>
+            <li class="leftItem">
+              <a href="javascript:;">美食酒水</a>
+            </li>
           </ul>
         </div>
         <div class="nav_right">
           <span></span>
-          <div class="rightMenu">
+          <div class="rightMenu" @click="handleMenu">
             <img src="./images/arrow-down-3-799ded53ea.png" alt="">
           </div>
+        </div>
+        <div class="all-nav" v-if="menus">
+          <p>全部频道</p>
+          <ul>
+            <li>
+              <span>推荐</span>
+            </li>
+            <li>
+              <span>居家生活</span>
+            </li>
+            <li>
+              <span>居家生活</span>
+            </li>
+            <li>
+              <span>居家生活</span>
+            </li>
+            <li>
+              <span>居家生活</span>
+            </li>
+            <li>
+              <span>居家生活</span>
+            </li>
+            <li>
+              <span>居家生活</span>
+            </li>
+            <li>
+              <span>居家生活</span>
+            </li>
+            <li>
+              <span>居家生活</span>
+            </li>
+          </ul>
         </div>
       </div>
     </header>
@@ -41,20 +82,8 @@
         <div class="msiteNav">
           <div class="swiper-container">
             <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <img src="./images/2fa47eef701d3fa517285a2f5c28c9f0.jpg" alt="">
-              </div>
-              <div class="swiper-slide">
-                <img src="./images/3c6358daba8bca7169b0dd2a49df188c.jpg" alt="">
-              </div>
-              <div class="swiper-slide">
-                <img src="./images/5e658f72294572822b65e09113ac4311.jpg" alt="">
-              </div>
-              <div class="swiper-slide">
-                <img src="./images/8ceaa8053baf2056334e166493e9eaab.jpg" alt="">
-              </div>
-              <div class="swiper-slide">
-                <img src="./images/9a98a10f260bcde62951a36ac43b2f92.jpg" alt="">
+              <div class="swiper-slide" v-for="(item,index) in product" :key="index">
+                <img :src="item.picUrl" alt="">
               </div>
             </div>
             <!-- 如果需要分页器 -->
@@ -63,80 +92,18 @@
         </div>
         <!--服务安全-->
         <div class="servicePolicy">
-          <div>
-            <i class="iconfont icon-safe"></i>
-            <span>网易自营品牌</span>
-          </div>
-          <div>
-            <i class="iconfont icon-safe"></i>
-            <span>30天无忧退货</span>
-          </div>
-          <div>
-            <i class="iconfont icon-rmb"></i>
-            <span>48小时快速退款</span>
+          <div v-for="(item,index) in msites.policyDescList" :key="index">
+            <i :class="item.icon"></i>
+            <span>{{item.desc}}</span>
           </div>
         </div>
         <!--用户导航-->
         <div class="userNav">
-          <ul class="userNav_list">
-            <li class="userNav_item">
+          <ul class="userNav_list" v-if="msites.kingKongModule">
+            <li class="userNav_item" v-for="(item,index) in msites.kingKongModule.kingKongList" :key="index">
               <a href="javascript:;">
-                <img src="./images/d916591adea776351e084016335e5820.png" alt="">
-                <p>饮食</p>
-              </a>
-            </li>
-            <li class="userNav_item">
-              <a href="javascript:;">
-                <img src="./images/d916591adea776351e084016335e5820.png" alt="">
-                <p>饮食</p>
-              </a>
-            </li>
-            <li class="userNav_item">
-              <a href="javascript:;">
-                <img src="./images/d916591adea776351e084016335e5820.png" alt="">
-                <p>饮食</p>
-              </a>
-            </li>
-            <li class="userNav_item">
-              <a href="javascript:;">
-                <img src="./images/d916591adea776351e084016335e5820.png" alt="">
-                <p>饮食</p>
-              </a>
-            </li>
-            <li class="userNav_item">
-              <a href="javascript:;">
-                <img src="./images/d916591adea776351e084016335e5820.png" alt="">
-                <p>饮食</p>
-              </a>
-            </li>
-            <li class="userNav_item">
-              <a href="javascript:;">
-                <img src="./images/d916591adea776351e084016335e5820.png" alt="">
-                <p>饮食</p>
-              </a>
-            </li>
-            <li class="userNav_item">
-              <a href="javascript:;">
-                <img src="./images/d916591adea776351e084016335e5820.png" alt="">
-                <p>饮食</p>
-              </a>
-            </li>
-            <li class="userNav_item">
-              <a href="javascript:;">
-                <img src="./images/d916591adea776351e084016335e5820.png" alt="">
-                <p>饮食</p>
-              </a>
-            </li>
-            <li class="userNav_item">
-              <a href="javascript:;">
-                <img src="./images/d916591adea776351e084016335e5820.png" alt="">
-                <p>饮食</p>
-              </a>
-            </li>
-            <li class="userNav_item">
-              <a href="javascript:;">
-                <img src="./images/d916591adea776351e084016335e5820.png" alt="">
-                <p>饮食</p>
+                <img :src="item.picUrl" alt="">
+                <p>{{item.text}}</p>
               </a>
             </li>
           </ul>
@@ -153,29 +120,16 @@
               <div class="arrows"> >> </div>
             </div>
             <div class="content_right">
-              <div class="weal">
+              <div class="weal" v-for="(item,index) in msites.indexActivityModule" :key="index">
                 <div class="weal_text">
-                  <p class="text_fu">福利社</p>
-                  <p class="text_day">今日特价</p>
+                  <p class="text_fu">{{item.title}}</p>
+                  <p class="text_day">{{item.subTitle}}</p>
                 </div>
                 <div class="weal_pic">
-                  <img src="https://yanxuan.nosdn.127.net/5b86ecaa888acebb75c90f513c7b8a4d.png?imageView&thumbnail=200x200&quality=75" alt="">
+                  <img :src="item.picUrl" alt="">
                   <div class="pic_icon">
-                    <p>¥95.2</p>
-                    <p>¥119</p>
-                  </div>
-                </div>
-              </div>
-              <div class="weal">
-                <div class="weal_text">
-                  <p class="text_fu">新人拼团</p>
-                  <p class="money">一元起包邮</p>
-                </div>
-                <div class="weal_pic">
-                  <img src="https://yanxuan.nosdn.127.net/811f871250fcaee12fd620e847c8dbf4.png?imageView&thumbnail=200x200&quality=75" alt="">
-                  <div class="pic_icon">
-                    <p>¥1</p>
-                    <p>¥19.9</p>
+                    <p>{{item.activityPrice}}</p>
+                    <p>{{item.originPrice}}</p>
                   </div>
                 </div>
               </div>
@@ -194,31 +148,10 @@
           </div>
           <div class="brand_content">
             <ul>
-              <li>
-                <p>海外制造商</p>
+              <li :style="{backgroundImage:`url(${item.picUrl})`}" v-for="(item,index) in msites.tagList" :key="index">
+                <p>{{item.name}}</p>
                 <div class="price">
-                  <span>9.9元起</span>
-                  <span class="upNew">上新</span>
-                </div>
-              </li>
-              <li>
-                <p>海外制造商</p>
-                <div class="price">
-                  <span>9.9元起</span>
-                  <span class="upNew">上新</span>
-                </div>
-              </li>
-              <li>
-                <p>海外制造商</p>
-                <div class="price">
-                  <span>9.9元起</span>
-                  <span class="upNew">上新</span>
-                </div>
-              </li>
-              <li>
-                <p>海外制造商</p>
-                <div class="price">
-                  <span>9.9元起</span>
+                  <span>{{item.floorPrice}}元起</span>
                   <span class="upNew">上新</span>
                 </div>
               </li>
@@ -233,52 +166,18 @@
             </div>
           </div>
           <div class="sell_content">
-            <ul class="sell_top">
-              <li>
-                <p>热销榜</p>
+            <ul class="sell_top" v-if="msites.hotBot">
+              <li v-for="(item,index) in msites.hotBot.hots" :key="index">
+                <p>{{item.name}}</p>
                 <div>
-                  <img src="http://yanxuan.nosdn.127.net/9a33f08a3b0f5c06fdf4c586d51b2f7c.png?imageView&quality=65&thumbnail=200x200" alt="">
-                </div>
-              </li>
-              <li>
-                <p>热销榜</p>
-                <div>
-                  <img src="http://yanxuan.nosdn.127.net/9a33f08a3b0f5c06fdf4c586d51b2f7c.png?imageView&quality=65&thumbnail=200x200" alt="">
+                  <img :src="item.image" alt="">
                 </div>
               </li>
             </ul>
-            <ul class="sell_bottom">
-              <li>
-                <span>居家生活榜</span>
-                <img src="http://yanxuan.nosdn.127.net/1b1f67998e1451b79530444745586833.png?imageView&quality=65&thumbnail=200x200" alt="">
-              </li>
-              <li>
-                <span>居家生活榜</span>
-                <img src="http://yanxuan.nosdn.127.net/1b1f67998e1451b79530444745586833.png?imageView&quality=65&thumbnail=200x200" alt="">
-              </li>
-              <li>
-                <span>居家生活榜</span>
-                <img src="http://yanxuan.nosdn.127.net/1b1f67998e1451b79530444745586833.png?imageView&quality=65&thumbnail=200x200" alt="">
-              </li>
-              <li>
-                <span>居家生活榜</span>
-                <img src="http://yanxuan.nosdn.127.net/1b1f67998e1451b79530444745586833.png?imageView&quality=65&thumbnail=200x200" alt="">
-              </li>
-              <li>
-                <span>居家生活榜</span>
-                <img src="http://yanxuan.nosdn.127.net/1b1f67998e1451b79530444745586833.png?imageView&quality=65&thumbnail=200x200" alt="">
-              </li>
-              <li>
-                <span>居家生活榜</span>
-                <img src="http://yanxuan.nosdn.127.net/1b1f67998e1451b79530444745586833.png?imageView&quality=65&thumbnail=200x200" alt="">
-              </li>
-              <li>
-                <span>居家生活榜</span>
-                <img src="http://yanxuan.nosdn.127.net/1b1f67998e1451b79530444745586833.png?imageView&quality=65&thumbnail=200x200" alt="">
-              </li>
-              <li>
-                <span>居家生活榜</span>
-                <img src="http://yanxuan.nosdn.127.net/1b1f67998e1451b79530444745586833.png?imageView&quality=65&thumbnail=200x200" alt="">
+            <ul class="sell_bottom" v-if="msites.hotBot">
+              <li v-for="(item,index) in msites.hotBot.commoditys" :key="index">
+                <span>{{item.name}}</span>
+                <img :src="item.image" alt="">
               </li>
             </ul>
           </div>
@@ -299,50 +198,31 @@
             <span class="buyMore">更多> </span>
           </div>
           <div class="buyGoods">
-            <ul>
-              <li>
-                <img src="http://yanxuan.nosdn.127.net/650cb915f83ae66fbdd6aea14030df12.png?imageView&thumbnail=216x216&quality=75" alt="">
+            <ul v-if="msites.flashSaleModule">
+              <li v-for="(item,index) in msites.flashSaleModule.itemList" :key="index">
+                <img :src="item.picUrl" alt="">
                 <div>
-                  <span>¥289</span>
-                  <span class="small">¥349</span>
-                </div>
-              </li>
-              <li>
-                <img src="http://yanxuan.nosdn.127.net/650cb915f83ae66fbdd6aea14030df12.png?imageView&thumbnail=216x216&quality=75" alt="">
-                <div>
-                  <span>¥289</span>
-                  <span class="small">¥349</span>
-                </div>
-              </li>
-              <li>
-                <img src="http://yanxuan.nosdn.127.net/650cb915f83ae66fbdd6aea14030df12.png?imageView&thumbnail=216x216&quality=75" alt="">
-                <div>
-                  <span>¥289</span>
-                  <span class="small">¥349</span>
-                </div>
-              </li>
-              <li>
-                <img src="http://yanxuan.nosdn.127.net/650cb915f83ae66fbdd6aea14030df12.png?imageView&thumbnail=216x216&quality=75" alt="">
-                <div>
-                  <span>¥289</span>
-                  <span class="small">¥349</span>
-                </div>
-              </li>
-              <li>
-                <img src="http://yanxuan.nosdn.127.net/650cb915f83ae66fbdd6aea14030df12.png?imageView&thumbnail=216x216&quality=75" alt="">
-                <div>
-                  <span>¥289</span>
-                  <span class="small">¥349</span>
-                </div>
-              </li>
-              <li>
-                <img src="http://yanxuan.nosdn.127.net/650cb915f83ae66fbdd6aea14030df12.png?imageView&thumbnail=216x216&quality=75" alt="">
-                <div>
-                  <span>¥289</span>
-                  <span class="small">¥349</span>
+                  <span>¥{{item.activityPrice}}</span>
+                  <span class="small">¥{{item.originPrice}}</span>
                 </div>
               </li>
             </ul>
+          </div>
+        </div>
+        <!--shop种类-->
+        <ShopList/>
+        <!--底部导航-->
+        <div class="bottomFooter">
+          <div class="content">
+            <div class="top">
+              <span class="btn">下载APP</span>
+              <span class="btn">电脑版</span>
+            </div>
+            <p class="copyright">
+              <span>网易公司版权所有 © 1997-2020</span>
+              <br>
+              <span>食品经营许可证：JY13301080111719</span>
+            </p>
           </div>
         </div>
       </div>
@@ -350,12 +230,26 @@
   </section>
 </template>
 <script>
+  import {mapState} from 'vuex'
   import Swiper from 'swiper'
   import 'swiper/dist/css/swiper.css'
   import BScroll from 'better-scroll'
+  import ShopList from '../../components/ShopList/ShopList.vue'
   export default {
+    data(){
+      return{
+        product:[], //获取首页数据
+        menus:false
+      }
+    },
+
+    computed:{
+      ...mapState({ //第一次渲染的时候没数据，得监听，在显示页面之后，获取到数据
+        msites: state=> state.msite.msites
+      })
+    },
     mounted() {
-      this._initSwiper();
+
       new BScroll('.msiteContent',{
         click:true,
         mouseWheel:true,
@@ -364,6 +258,13 @@
           interactive:false
         }
       })
+      new BScroll('.nav_left',{
+        click:true,
+        scrollX:true
+      })
+      //更新到数据
+      this.$store.dispatch('getMsite')
+
     },
     methods: {
       _initSwiper() {
@@ -391,9 +292,29 @@
             }
           }
         });
+      },
+
+      //点击按钮，出现下拉菜单
+      handleMenu(){
+        this.menus = !this.menus
+      }
+    },
+
+    components:{
+      ShopList
+    },
+
+    watch:{
+      msites(data){
+        this.$nextTick(()=>{
+          this._initSwiper();
+        })
+        console.log(data)
+        if(data.focusList){
+          this.product = data.focusList
+        }
       }
     }
-
   }
 </script>
 <style lang="stylus" rel="stylesheet/stylus">
@@ -402,6 +323,7 @@
   #msite
     position relative
     width 100%
+    height 100%
     .header_box
       width 100%
       position fixed
@@ -446,6 +368,7 @@
         height 60px
         margin-top 2px
         .nav_left
+          width 100%
           display flex
           .leftList
             display flex
@@ -477,10 +400,37 @@
             line-height 60px
             width 100px
             height 60px
+            background-color #ffffff
             img
               display inline-block
               width 28px
               height 28px
+        .all-nav
+          width 100%
+          background-color #ffffff
+          p
+            height 60px
+            font-size 28px
+            padding-left 30px
+          ul
+            display flex
+            justify-content space-between
+            flex-wrap wrap
+            padding-left 15px
+            li
+              width 150px
+              height 56px
+              line-height 56px
+              margin 10px
+              font-size 28px
+              color #333
+              border 2px solid #d9d9d9
+              border-radius 10px
+              background-color #fafafa
+              text-align center
+              span
+                color #333
+                font-size 28px
     .msiteContent
       position absolute
       top 0
@@ -687,7 +637,6 @@
               li
                 width 350px
                 height 260px
-                background-image url("http://yanxuan.nosdn.127.net/74e2ea8f81004d0a60f90fc8e4649058.png?imageView&thumbnail=343y260&enlarge=1")
                 background-size 100% 100%
                 text-align center
                 background-color whitesmoke
@@ -711,8 +660,7 @@
 
         .sell
           margin-top 14px
-          padding 0 20px
-          padding-bottom 10px
+          padding 0 20px 10px
           background-color #ffffff
           .sell_title
             width 100%
@@ -819,4 +767,36 @@
                     font-size 24px
                     color gray
                     margin-left 8px
+        .bottomFooter
+          position relative
+          width 100%
+          height 245px
+          background-color #414141
+          opacity .7px
+          font-size 26px
+          .content
+            position absolute
+            left 50%
+            top 25%
+            margin-left -200px
+            display flex
+            flex-direction column
+            align-items center
+            .top
+              width 100%
+              height 60px
+              line-height 60px
+              text-align center
+              color #ffffff
+              display flex
+              justify-content space-between
+              span
+                width 172px
+                height 60px
+                border 1px solid #999
+            .copyright
+              margin-top 10px
+              text-align center
+              color #999
+
 </style>

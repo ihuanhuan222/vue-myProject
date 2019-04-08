@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view/> <!--显示当前组件-->
-    <FooterGuide/>
+    <FooterGuide v-if="!$route.meta.isShow"/>
   </div>
 </template>
 <script>
